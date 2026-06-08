@@ -1,0 +1,9 @@
+build/
+
+# Old root-level build outputs.
+/hello_gpu
+/matrix_add
+/matrix_trans
+/floatvec_add_fp16
+/cuda_graph
+/cuda_graph_mult_stream

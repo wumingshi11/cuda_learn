@@ -204,11 +204,9 @@ __syncwarp();
 - warp 内通信和 shuffle 为什么需要理解 warp 级同步。
 - warp 级同步不能替代 block 级同步。
 
-状态：
+已有文档：
 
-```text
-待补充文档
-```
+- [Warp-Level Synchronization](warp_level_synchronization.md)
 
 ### 2.2 Block 级同步
 
@@ -230,11 +228,9 @@ __syncthreads();
 - 同一个 block 内所有线程都必须能到达同步点。
 - 分支中错误使用 `__syncthreads()` 为什么可能导致死锁或未定义行为。
 
-状态：
+已有文档：
 
-```text
-待补充文档
-```
+- [Block-Level Synchronization](block_level_synchronization.md)
 
 ### 2.3 Kernel / Grid 级同步
 
@@ -250,11 +246,9 @@ __syncthreads();
 - 为什么一个 kernel 结束可以作为下一个 kernel 的同步边界。
 - cooperative groups 的 grid 级同步适用条件。
 
-状态：
+已有文档：
 
-```text
-待补充文档
-```
+- [Kernel / Grid-Level Synchronization](kernel_grid_synchronization.md)
 
 ### 2.4 Stream 级同步和异步执行
 
@@ -281,11 +275,9 @@ cudaStreamWaitEvent(stream, event);
 - event 如何建立不同 stream 之间的依赖。
 - `cudaMemcpyAsync` 如何挂到指定 stream 上。
 
-状态：
+已有文档：
 
-```text
-待补充文档
-```
+- [CUDA Stream Synchronization and Async Execution](cuda_stream.md)
 
 ### 2.5 Overlap Copy and Compute
 
@@ -311,11 +303,9 @@ stream 1: H2D chunk 1 -> kernel chunk 1 -> D2H chunk 1
 stream 2: H2D chunk 2 -> kernel chunk 2 -> D2H chunk 2
 ```
 
-状态：
+已有文档：
 
-```text
-待补充文档
-```
+- [Overlap Copy and Compute](overlap_copy_compute.md)
 
 ### 2.6 Device / Host 级同步
 
@@ -337,11 +327,29 @@ cudaDeviceSynchronize();
 - 同步版 `cudaMemcpy()` 对 host/device 执行顺序的影响。
 - 为什么不要在循环中频繁做 device 级同步。
 
-状态：
+已有文档：
+
+- [Device / Host Synchronization](device_host_synchronization.md)
+
+### 2.7 Atomic、Fence 和 Barrier 的区别
+
+核心问题：
 
 ```text
-待补充文档
+atomic、fence、barrier 分别解决并发更新、内存可见性和线程等待，不能互相混用。
 ```
+
+需要掌握：
+
+- atomic 保护某个地址的并发读改写，但不是 barrier。
+- fence 约束当前线程前后内存写入的顺序和可见性，但不等待其他线程。
+- barrier 让一组线程互相等待，例如 `__syncwarp()` 和 `__syncthreads()`。
+- fence 的典型用法是先写 data，再 fence，再写 flag / counter。
+- atomic 不应被简单理解为 fence。
+
+已有文档：
+
+- [Atomic, Fence and Barrier](atomic_fence_barrier.md)
 
 ## 3. 执行抽象
 

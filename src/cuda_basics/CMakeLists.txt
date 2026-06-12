@@ -1,0 +1,6 @@
+add_cuda_example(hello_gpu hello.cu)
+add_cuda_example(matrix_add matrix_add.cu)
+add_cuda_example(matrix_trans matrix_trans.cu)
+add_cuda_example(floatvec_add_fp16 floatvec_add.cu)
+add_cuda_example(cuda_graph cuda_graph.cu)
+add_cuda_example(cuda_graph_mult_stream cuda_graph_mult_stream.cu)

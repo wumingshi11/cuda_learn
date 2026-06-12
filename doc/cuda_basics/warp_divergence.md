@@ -47,7 +47,7 @@ GPU 通常会把不同路径分开执行：
 
 ## 在矩阵转置代码中的体现
 
-例如 `src/matrix_trans.cu` 中的边界检查：
+例如 `src/cuda_basics/matrix_trans.cu` 中的边界检查：
 
 ```cpp
 if ((y + i) < height && x < width) {

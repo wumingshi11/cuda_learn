@@ -45,7 +45,7 @@ global read  strided / uncoalesced
 3. 按行把转置后的数据连续写回 global memory
 ```
 
-在 `src/matrix_trans.cu` 中，读取阶段：
+在 `src/cuda_basics/matrix_trans.cu` 中，读取阶段：
 
 ```cpp
 tile[threadIdx.y + i][threadIdx.x] = input[(y + i) * width + x];

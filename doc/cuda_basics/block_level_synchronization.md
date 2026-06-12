@@ -47,7 +47,7 @@ block 执行结束后，这份 tile 释放
 
 ## 为什么矩阵转置里需要 __syncthreads
 
-在 `src/matrix_trans.cu` 中：
+在 `src/cuda_basics/matrix_trans.cu` 中：
 
 ```cpp
 tile[threadIdx.y + i][threadIdx.x] = input[(y + i) * width + x];
